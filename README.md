@@ -6,7 +6,8 @@
 
 In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
 
-Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
+description: >
+  Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
 
 Explore our detailed findings and methodologies in our Jupyter Notebook:  
 [Jupyter Notebook](Kmeans vs. Sum of Norms.ipynb)
