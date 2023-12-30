@@ -4,15 +4,14 @@
 
 ## Introduction
 
-description: > In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
+In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
 
-description: >
-  Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
+Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
 
 Explore our detailed findings and methodologies in our Jupyter Notebook:  
 [Jupyter Notebook](Kmeans vs. Sum of Norms.ipynb)
 
-This research is grounded in the work of **[Dr. Stephen Vavasis]** (https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis), and for an in-depth understanding, please refer to his publication:  
+This research is grounded in the work of **[Dr. Stephen Vavasis](https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis)**, and for an in-depth understanding, please refer to his publication:  
 [Certifying clusters from sum-of-norms clustering]
 
 ## Convex Clustering: Variables and Objective Function
@@ -51,8 +50,6 @@ Sum-of-norms clustering stands apart from K-means in several critical areas, inc
 | **Interpretability** | Straightforward but may oversimplify clustering dynamics. | Offers a nuanced perspective, uncovering complex clustering patterns possibly overlooked by K-means. |
 
 ## Conclusion
-Sum-of-norms clustering unveils intricate data patterns, a capability that simpler algorithms like K-means might overlook. This approach is particularly effective for datasets featuring complex groupings. Our project demonstrates how sum-of
-
--norms clustering can yield distinct data groupings compared to K-means, with potential variances in cluster numbers, shapes, and resilience to outliers. The accompanying visual representations highlight these differences, offering a comparative view of cluster assignments and structures.
+Sum-of-norms clustering unveils intricate data patterns, a capability that simpler algorithms like K-means might overlook. This approach is particularly effective for datasets featuring complex groupings. Our project demonstrates how sum-of-norms clustering can yield distinct data groupings compared to K-means, with potential variances in cluster numbers, shapes, and resilience to outliers. The accompanying visual representations highlight these differences, offering a comparative view of cluster assignments and structures.
 
 ---
