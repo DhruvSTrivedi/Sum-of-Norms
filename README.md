@@ -9,30 +9,30 @@ Convex optimization is an essential subfield of optimization in machine learning
 In the context of unsupervised machine learning, convex optimization is leveraged to find the best grouping of data points by minimizing a cost function. Clustering algorithms, including k-means and sum-of-norms clustering, utilize convex optimization to efficiently discover clusters within a dataset. Unlike supervised learning, where models are trained with labelled data, unsupervised learning algorithms like clustering infer the natural structure present within a dataset without prior knowledge of labels.
 
 For more detailed output and code, see the Jupyter Notebook:  
-Kmeans vs. Sum of Norms.ipynb
+[Notebook](Kmeans vs. Sum of Norms.ipynb)
 
 The research and methods discussed here are based on the work of **[Dr. Stephen Vavasis]**(https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis). For further reading, please refer to his research paper:  
 [Certifying clusters from sum-of-norms clustering](https://arxiv.org/abs/2006.11355)
 
-## Variables and Functions
+## Convex Clustering Variables and Objective Function
 
-### Variables:
-- `U`: Cluster centroids for each data point in `X`.
-- `F`: Auxiliary variables for the Alternating Direction Method of Multipliers (ADMM) algorithm to ensure the equality constraints.
+### Variables
+- `U`: Represents the cluster centroids for each data point in `X`. In the context of convex clustering, `U` can be thought of as a matrix where each row corresponds to the centroid of a cluster that a data point is assigned to.
+- `F`: Represents the auxiliary variables that enforce the equality constraints necessary for the ADMM (Alternating Direction Method of Multipliers) algorithm to solve convex optimization problems. These constraints ensure that the differences between the centroids are properly accounted for in the optimization.
 
-### Objective Function:
-- Data fidelity term: `0.5 * cp.sum_squares(U - X)`
-- Regularization term: `gamma * cp.sum(cp.norm(F, axis=1))`
+### Objective Function
+- The data fidelity term is `0.5 * cp.sum_squares(U - X)`, which measures the squared Euclidean distance between each data point and its corresponding centroid. The algorithm aims to minimize this term.
+- The regularization term `gamma * cp.sum(cp.norm(F, axis=1))` penalizes the sum of the Euclidean norms of the differences between all pairs of centroids. The regularization parameter `gamma` controls this term, and a larger `gamma` encourages fewer clusters by increasing the penalty for having distinct centroids.
 
-## Constraints and Optimization
+## Constraints and Optimization Problem
 
-### Constraints:
-- Enforced by list comprehension: `'[F[i*n + j, :] == U[i, :] - U[j, :] for i in range(n) for j in range(n)]'`
-- Ensures differences between centroids are accounted for.
+### Constraints
+- The list comprehension `'[F[i*n + j, :] == U[i, :] - U[j, :] for i in range(n) for j in range(n)]'` creates pairwise constraints for every pair of data points. This enforces that the differences between centroids (stored in `F`) are equal to the actual differences between the `U` variables. This part is crucial for the sum-of-norms clustering and is a direct translation of the mathematical constraints found in a convex clustering formulation.
 
-### Optimization Problem:
-- Defined as `problem = cp.Problem(cp.Minimize(objective), constraints)`
-- Solved using the SCS solver.
+### Optimization Problem
+- The optimization problem is defined with the expression `problem = cp.Problem(cp.Minimize(objective), constraints)`. It encapsulates the objective of minimizing the objective function subject to the given constraints.
+- The problem is solved using `problem.solve(solver=cp.SCS)`, which utilizes the SCS (Split Conic Solver), suitable for large-scale convex optimization problems.
+
 
 ## Application to Data
 
