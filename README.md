@@ -4,7 +4,7 @@
 
 ## Introduction
 
-In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
+description: > In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
 
 description: >
   Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
@@ -43,7 +43,7 @@ Sum-of-norms clustering stands apart from K-means in several critical areas, inc
 ## Comparative Analysis
 | Aspect | K-means Clustering | Sum-of-Norms Clustering |
 |--------|--------------------|-------------------------|
-| **Objective Function** | Seeks to divide data into `K` clusters, minimizing within-cluster sum of squares. | Aims to minimize a mix of squared differences and a sparsity-promoting regularization term for centroid variations. |
+| **Objective Function** | Seeks to divide data into `K` clusters, minimizing the within-cluster sum of squares. | Aims to minimize a mix of squared differences and a sparsity-promoting regularization term for centroid variations. |
 | **Cluster Configuration** | Presumes spherical clusters of similar sizes, a potential limitation. | Flexible regarding shape and size, capable of identifying clusters with irregular contours and hierarchical structures. |
 | **Cluster Count Determination** | Requires pre-setting the number of clusters (`K`). | Determines cluster count based on data and `gamma`; a higher `gamma` results in fewer clusters. |
 | **Outlier Resilience** | Potentially sensitive to outliers, significantly influenced by mean cluster values. | Enhanced robustness against outliers due to the regularization term, which promotes similar cluster assignments. |
