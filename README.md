@@ -7,18 +7,10 @@ In the realm of machine learning, particularly under unsupervised learning parad
 Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
 
 Explore our detailed findings and methodologies in our Jupyter Notebook:  
-[Jupyter Notebook](Kmeans vs. Sum of Norms.ipynb)
+[Jupyter Notebook](notebook.ipynb)
 
 This research is grounded in the work of **[Dr. Stephen Vavasis](https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis)**, and for an in-depth understanding, please refer to his publication:  
 [Certifying clusters from sum-of-norms clustering]
-
-...
-
-[The rest of your content continues in Markdown format]
-
-
-  This research is grounded in the work of **[Dr. Stephen Vavasis](https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis)**, and for an in-depth understanding, please refer to his publication:  
-  [Certifying clusters from sum-of-norms clustering]
 
 ## Convex Clustering: Variables and Objective Function
 
