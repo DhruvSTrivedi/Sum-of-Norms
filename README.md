@@ -1,5 +1,3 @@
-Certainly! Here is a Markdown rendition of the provided code and explanations, designed to be visually appealing and organized for better readability:
-
 ---
 
 # Convex Clustering Using Sum-of-Norms Approach
@@ -70,12 +68,20 @@ Each point represents a data instance, and the color coding corresponds to the c
 
 ## Theoretical Background
 
-The sum-of-norms clustering differs from K-means in several key aspects, including the objective function, cluster shapes and sizes, determination of the number of clusters, robustness to outliers, computation complexity, and interpretability.
+The sum-of-norms clustering differs from K-means in several key aspects, including the objective function, cluster shapes and sizes, determination of the number of clusters, robustness to outliers, computation complexity, and interoperability.
+
+## Differences
+| Factor | K-means Clustering | Sum-of-Norms Clustering |
+|--------|--------------------|-------------------------|
+| **Objective Function** | Aims to partition data into `K` clusters minimizing within-cluster sum of squares. | Minimizes a combination of the sum of squared differences and a regularization term promoting sparsity in centroid differences. |
+| **Cluster Shape and Size** | Assumes clusters are spherical with similar sizes, which can be limiting. | Does not make strong assumptions about shape or size, can find clusters with irregular shapes and hierarchical structures. |
+| **Determination of Cluster Number** | Requires the number of clusters (`K`) to be specified a priori. | Can determine the number of clusters based on data and the regularization parameter (`gamma`); a larger `gamma` leads to fewer clusters. |
+| **Robustness to Outliers** | Can be sensitive to outliers as they significantly influence the mean of a cluster. | More robust to outliers due to the regularization term promoting similar cluster assignments. |
+| **Computation** | Generally faster and scales better to large datasets. | More computationally intensive due to solving a convex optimization problem, especially as dataset size grows. |
+| **Interpretability** | Simple to understand and interpret but may oversimplify clustering structure. | Provides a nuanced view of data structure, revealing complex clustering patterns that K-means might miss. |
 
 ## Conclusion
+Sum-of-norms clustering provides a nuanced view of data structures, revealing complex patterns that simpler algorithms like K-means might not capture. This makes it a powerful tool for unsupervised learning in datasets with intricate groupings. In the above project, the results from sum-of-norms clustering might show a different grouping of data points compared to K-means, potentially with a different number of clusters, cluster shapes, and robustness to outliers. The visual representation provided after sum-of-norms clustering reflects these nuances and can be compared to the K-means results to observe the differences in cluster assignments and structures.
 
-Sum-of-norms clustering provides a nuanced view of data structures, revealing complex patterns that simpler algorithms like K-means might not capture. This makes it a powerful tool for unsupervised learning in datasets with intricate groupings.
 
 ---
-
-You can paste this markdown content into any markdown editor or GitHub repository README file to see the formatting in action.
