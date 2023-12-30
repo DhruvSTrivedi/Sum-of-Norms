@@ -9,7 +9,7 @@ Convex optimization is an essential subfield of optimization in machine learning
 In the context of unsupervised machine learning, convex optimization is leveraged to find the best grouping of data points by minimizing a cost function. Clustering algorithms, including k-means and sum-of-norms clustering, utilize convex optimization to efficiently discover clusters within a dataset. Unlike supervised learning, where models are trained with labelled data, unsupervised learning algorithms like clustering infer the natural structure present within a dataset without prior knowledge of labels.
 
 For more detailed output and code, see the Jupyter Notebook:  
-[Kmeans vs. Sum of Norms.ipynb](Kmeans vs. Sum of Norms.ipynb)
+Kmeans vs. Sum of Norms.ipynb
 
 The research and methods discussed here are based on the work of **Prof. Stephen Vavasis**. For further reading, please refer to his research paper:  
 [Vavasis, S. (2020). Convex Clustering: An Overview. arXiv preprint arXiv:2006.11355.](https://arxiv.org/abs/2006.11355)
