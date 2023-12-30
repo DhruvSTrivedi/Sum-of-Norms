@@ -1,58 +1,57 @@
 ---
 
-# Convex Clustering Using Sum-of-Norms Approach
+# Enhanced Convex Clustering via Sum-of-Norms Methodology
 
-## Overview
+## Introduction
 
-Convex optimization is an essential subfield of optimization in machine learning, particularly for unsupervised learning tasks such as clustering. It involves the process where the objective function is convex, which simplifies the optimization process by ensuring that every local minimum is also a global minimum. This characteristic makes convex optimization problems generally more straightforward to solve than non-convex optimization problems.
+In the realm of machine learning, particularly under unsupervised learning paradigms, convex optimization stands out as a pivotal area of study. This method is characterized by its objective function's convex nature, simplifying the optimization process by guaranteeing that each local minimum is also a global minimum. This inherent property renders convex optimization problems more manageable compared to their non-convex counterparts.
 
-In the context of unsupervised machine learning, convex optimization is leveraged to find the best grouping of data points by minimizing a cost function. Clustering algorithms, including k-means and sum-of-norms clustering, utilize convex optimization to efficiently discover clusters within a dataset. Unlike supervised learning, where models are trained with labelled data, unsupervised learning algorithms like clustering infer the natural structure present within a dataset without prior knowledge of labels.
+Unsupervised machine learning extensively employs convex optimization to optimally group data points by minimizing a specific cost function. Clustering algorithms such as k-means and sum-of-norms clustering are prime examples, leveraging convex optimization for efficient data segmentation. Contrary to supervised learning algorithms, which utilize labeled data for training, unsupervised algorithms like clustering deduce the inherent structure within a dataset without prior label information.
 
-For more detailed output and code, see the Jupyter Notebook:  
-[Notebook](Kmeans vs. Sum of Norms.ipynb)
+Explore our detailed findings and methodologies in our Jupyter Notebook:  
+[Jupyter Notebook](Kmeans vs. Sum of Norms.ipynb)
 
-The research and methods discussed here are based on the work of **[Dr. Stephen Vavasis]** (https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis). 
-
-For further reading, please refer to his research paper:  
+This research is grounded in the work of **[Dr. Stephen Vavasis]** (https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis), and for an in-depth understanding, please refer to his publication:  
 [Certifying clusters from sum-of-norms clustering]
 
-## Convex Clustering Variables and Objective Function
+## Convex Clustering: Variables and Objective Function
 
-### Variables
-- `U`: Represents the cluster centroids for each data point in `X`. In the context of convex clustering, `U` can be thought of as a matrix where each row corresponds to the centroid of a cluster that a data point is assigned to.
-- `F`: Represents the auxiliary variables that enforce the equality constraints necessary for the ADMM (Alternating Direction Method of Multipliers) algorithm to solve convex optimization problems. These constraints ensure that the differences between the centroids are properly accounted for in the optimization.
+### Core Variables
+- `U`: Denotes the cluster centroids corresponding to each data point in `X`. In convex clustering, `U` is conceptualized as a matrix where each row aligns with the centroid of a cluster assigned to a data point.
+- `F`: Symbolizes auxiliary variables essential for enforcing the equality constraints in the ADMM (Alternating Direction Method of Multipliers) algorithm for solving convex optimization problems. These constraints are vital for appropriately accounting for differences between centroids in the optimization process.
 
 ### Objective Function
-- The data fidelity term is `0.5 * cp.sum_squares(U - X)`, which measures the squared Euclidean distance between each data point and its corresponding centroid. The algorithm aims to minimize this term.
-- The regularization term `gamma * cp.sum(cp.norm(F, axis=1))` penalizes the sum of the Euclidean norms of the differences between all pairs of centroids. The regularization parameter `gamma` controls this term, and a larger `gamma` encourages fewer clusters by increasing the penalty for having distinct centroids.
+- Data Fidelity Term: `0.5 * cp.sum_squares(U - X)`, quantifying the squared Euclidean distance between data points and their respective centroids. The goal is to minimize this term.
+- Regularization Term: `gamma * cp.sum(cp.norm(F, axis=1))`, imposing penalties on the sum of the Euclidean norms of centroid differences. The `gamma` parameter regulates this term, where a higher `gamma` value fosters fewer clusters by intensifying the penalty for distinct centroids.
 
-## Constraints and Optimization Problem
+## Constraints and Optimization Strategy
 
 ### Constraints
-- The list comprehension `'[F[i*n + j, :] == U[i, :] - U[j, :] for i in range(n) for j in range(n)]'` creates pairwise constraints for every pair of data points. This enforces that the differences between centroids (stored in `F`) are equal to the actual differences between the `U` variables. This part is crucial for the sum-of-norms clustering and is a direct translation of the mathematical constraints found in a convex clustering formulation.
+- The expression `'[F[i*n + j, :] == U[i, :] - U[j, :] for i in range(n) for j in range(n)]'` establishes pairwise constraints for each data point pair. This ensures that the centroid differences (stored in `F`) match the actual differences in the `U` variables, which is crucial for sum-of-norms clustering.
 
 ### Optimization Problem
-- The optimization problem is defined with the expression `problem = cp.Problem(cp.Minimize(objective), constraints)`. It encapsulates the objective of minimizing the objective function subject to the given constraints.
-- The problem is solved using `problem.solve(solver=cp.SCS)`, which utilizes the SCS (Split Conic Solver), suitable for large-scale convex optimization problems.
+- Defined as `problem = cp.Problem(cp.Minimize(objective), constraints)`, this encapsulates the goal of minimizing the objective function under the specified constraints.
+- The problem is tackled using `problem.solve(solver=cp.SCS)`, employing the SCS (Split Conic Solver), adept for large-scale convex optimization challenges.
 
-Each point represents a data instance, and the color coding corresponds to the cluster assignment.
+Each point in our visual representation corresponds to a data instance, with color coding indicating cluster assignments.
 
-## Theoretical Background
+## Theoretical Insights
 
-The sum-of-norms clustering differs from K-means in several key aspects, including the objective function, cluster shapes and sizes, determination of the number of clusters, robustness to outliers, computation complexity, and interoperability.
+Sum-of-norms clustering stands apart from K-means in several critical areas, including the objective function, cluster configurations, cluster count determination, outlier resilience, computational complexity, and interpretability.
 
-## Differences
-| Factor | K-means Clustering | Sum-of-Norms Clustering |
+## Comparative Analysis
+| Aspect | K-means Clustering | Sum-of-Norms Clustering |
 |--------|--------------------|-------------------------|
-| **Objective Function** | Aims to partition data into `K` clusters minimizing within-cluster sum of squares. | Minimizes a combination of the sum of squared differences and a regularization term promoting sparsity in centroid differences. |
-| **Cluster Shape and Size** | Assumes clusters are spherical with similar sizes, which can be limiting. | Does not make strong assumptions about shape or size, can find clusters with irregular shapes and hierarchical structures. |
-| **Determination of Cluster Number** | Requires the number of clusters (`K`) to be specified a priori. | Can determine the number of clusters based on data and the regularization parameter (`gamma`); a larger `gamma` leads to fewer clusters. |
-| **Robustness to Outliers** | Can be sensitive to outliers as they significantly influence the mean of a cluster. | More robust to outliers due to the regularization term promoting similar cluster assignments. |
-| **Computation** | Generally faster and scales better to large datasets. | More computationally intensive due to solving a convex optimization problem, especially as dataset size grows. |
-| **Interpretability** | Simple to understand and interpret but may oversimplify clustering structure. | Provides a nuanced view of data structure, revealing complex clustering patterns that K-means might miss. |
+| **Objective Function** | Seeks to divide data into `K` clusters, minimizing within-cluster sum of squares. | Aims to minimize a mix of squared differences and a sparsity-promoting regularization term for centroid variations. |
+| **Cluster Configuration** | Presumes spherical clusters of similar sizes, a potential limitation. | Flexible regarding shape and size, capable of identifying clusters with irregular contours and hierarchical structures. |
+| **Cluster Count Determination** | Requires pre-setting the number of clusters (`K`). | Determines cluster count based on data and `gamma`; a higher `gamma` results in fewer clusters. |
+| **Outlier Resilience** | Potentially sensitive to outliers, significantly influenced by mean cluster values. | Enhanced robustness against outliers due to the regularization term, which promotes similar cluster assignments. |
+| **Computation** | Typically faster, scaling efficiently with larger datasets. | Computationally demanding, involving convex optimization, especially for larger datasets. |
+| **Interpretability** | Straightforward but may oversimplify clustering dynamics. | Offers a nuanced perspective, uncovering complex clustering patterns possibly overlooked by K-means. |
 
 ## Conclusion
-Sum-of-norms clustering provides a nuanced view of data structures, revealing complex patterns that simpler algorithms like K-means might not capture. This makes it a powerful tool for unsupervised learning in datasets with intricate groupings. In the above project, the results from sum-of-norms clustering might show a different grouping of data points compared to K-means, potentially with a different number of clusters, cluster shapes, and robustness to outliers. The visual representation provided after sum-of-norms clustering reflects these nuances and can be compared to the K-means results to observe the differences in cluster assignments and structures.
+Sum-of-norms clustering unveils intricate data patterns, a capability that simpler algorithms like K-means might overlook. This approach is particularly effective for datasets featuring complex groupings. Our project demonstrates how sum-of
 
+-norms clustering can yield distinct data groupings compared to K-means, with potential variances in cluster numbers, shapes, and resilience to outliers. The accompanying visual representations highlight these differences, offering a comparative view of cluster assignments and structures.
 
 ---
