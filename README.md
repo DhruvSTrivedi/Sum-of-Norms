@@ -11,14 +11,8 @@ In the context of unsupervised machine learning, convex optimization is leverage
 For more detailed output and code, see the Jupyter Notebook:  
 Kmeans vs. Sum of Norms.ipynb
 
-The research and methods discussed here are based on the work of **Prof. Stephen Vavasis**. For further reading, please refer to his research paper:  
-[Vavasis, S. (2020). Convex Clustering: An Overview. arXiv preprint arXiv:2006.11355.](https://arxiv.org/abs/2006.11355)
-
----
-
-For additional insights and inquiries, connect with Prof. Stephen Vavasis:  
-[Prof. Stephen Vavasis](https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis)
-
+The research and methods discussed here are based on the work of **[Dr. Stephen Vavasis]**(https://uwaterloo.ca/combinatorics-and-optimization/contacts/stephen-vavasis). For further reading, please refer to his research paper:  
+[Certifying clusters from sum-of-norms clustering](https://arxiv.org/abs/2006.11355)
 
 ## Variables and Functions
 
